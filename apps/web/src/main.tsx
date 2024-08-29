@@ -1,8 +1,11 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import './index.css'
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <div />
+        <div className='bg-red-500 border-4 border-dashed' >
+            hello!
+        </div>
     </StrictMode>,
 )
