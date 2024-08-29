@@ -1,11 +1,16 @@
 {
     "editor.codeActionsOnSave": {
         "source.organizeImports.biome": "explicit",
-        "quickfix.biome": "explicit"
+        "quickfix.biome": "explicit",
+        "source.fixAll.ts": "explicit",
+        "source.sortImports": "explicit"
     },
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "biomejs.biome",
     "[typescript]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    },
+    "[typescriptreact]": {
         "editor.defaultFormatter": "biomejs.biome"
     },
     "[json]": {
@@ -13,9 +18,6 @@
     },
     "[jsonc]": {
         "editor.defaultFormatter": "biomejs.biome"
-    },
-    "[typescriptreact]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
     },
     "files.associations": {
         "*.json": "jsonc"

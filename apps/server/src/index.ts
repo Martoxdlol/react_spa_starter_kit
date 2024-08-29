@@ -1,10 +1,12 @@
+import { auth } from 'auth-helpers'
 import { Hono } from 'hono'
 
 const app = new Hono()
+    .get('/api', (c) => {
+        return c.json({})
+    })
 
-app.get('/api', (c) => {
-    return c.json({})
-})
+    .route('/api/auth', auth)
 
 Bun.serve({
     fetch: app.fetch,

@@ -1,9 +1,9 @@
 {
-    "name": "server",
-    "module": "src/index.ts",
+    "name": "database",
+    "module": "index.ts",
     "type": "module",
-    "scripts": {
-        "dev": "bun --watch src/index.ts"
+    "exports": {
+        ".": "./src/index.ts"
     },
     "devDependencies": {
         "@types/bun": "latest"
@@ -12,7 +12,8 @@
         "typescript": "^5.5.4"
     },
     "dependencies": {
-        "hono": "^4.5.9",
-        "auth-helpers": "workspace:*"
+        "drizzle-orm": "^0.33.0",
+        "nanoid": "^5.0.7",
+        "postgres": "^3.4.4"
     }
 }

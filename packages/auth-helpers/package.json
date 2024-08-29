@@ -1,9 +1,8 @@
 {
-    "name": "server",
-    "module": "src/index.ts",
+    "name": "auth-helpers",
     "type": "module",
-    "scripts": {
-        "dev": "bun --watch src/index.ts"
+    "exports": {
+        ".": "./src/index.ts"
     },
     "devDependencies": {
         "@types/bun": "latest"
@@ -12,7 +11,10 @@
         "typescript": "^5.5.4"
     },
     "dependencies": {
+        "arctic": "^1.9.2",
+        "database": "workspace:*",
+        "env-helpers": "workspace:*",
         "hono": "^4.5.9",
-        "auth-helpers": "workspace:*"
+        "lucia": "^3.2.0"
     }
 }
