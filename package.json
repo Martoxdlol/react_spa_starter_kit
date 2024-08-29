@@ -3,6 +3,7 @@
     "type": "module",
     "scripts": {
         "check": "biome check . --diagnostic-level=error",
+        "format": "biome check . --write --unsafe",
         "dev:web": "cd apps/web && bun dev",
         "dev:server": "cd apps/server && bun dev",
         "dev": "run-p dev:*"
