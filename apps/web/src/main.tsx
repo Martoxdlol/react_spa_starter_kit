@@ -1,12 +1,23 @@
+import { ApiProvider, api } from 'api/react'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
 import { Button } from './components/ui/button'
+import './index.css'
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <div className='bg-red-500 border-4 border-dashed'>
-            <Button variant='outline'>Click ASD</Button>
-        </div>
+        <ApiProvider>
+            <Hello />
+        </ApiProvider>
     </StrictMode>,
 )
+
+function Hello() {
+    const { data, isPending } = api.hello.useQuery()
+
+    return (
+        <div className='bg-red-500 border-4 border-dashed'>
+            <Button variant='outline'>{data}</Button>
+        </div>
+    )
+}

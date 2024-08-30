@@ -1,7 +1,7 @@
 import { generateCodeVerifier, generateState } from 'arctic'
 import { db } from 'database'
 import { Hono } from 'hono'
-import { getCookie, setCookie } from 'hono/cookie'
+import { deleteCookie, getCookie, setCookie } from 'hono/cookie'
 import { github, google, lucia } from '../lucia'
 import type { GoogleUser } from '../types'
 import {
@@ -69,6 +69,7 @@ export const auth = new Hono()
             const sessionCookie = lucia.createSessionCookie(session.id)
 
             setCookie(c, sessionCookie.name, sessionCookie.value, sessionCookie.attributes)
+            deleteCookie(c, 'github_oauth_state')
 
             const redirectPath = consumeRedirectPathCookie(c)
 
@@ -104,8 +105,8 @@ export const auth = new Hono()
             const session = await lucia.createSession(user.id, {})
             const sessionCookie = lucia.createSessionCookie(session.id)
 
-            console.log(sessionCookie.attributes)
             setCookie(c, sessionCookie.name, sessionCookie.value, sessionCookie.attributes)
+            deleteCookie(c, 'google_oauth_state')
 
             const redirectPath = consumeRedirectPathCookie(c)
 

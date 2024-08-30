@@ -43,6 +43,7 @@ export class LuciaAuthAdapter implements Adapter {
 
         return [s, u]
     }
+
     async getUserSessions(userId: UserId): Promise<DatabaseSession[]> {
         const sessions = await this.database.query.sessions.findMany({
             where: eq(schema.sessions.userId, userId),
@@ -55,6 +56,7 @@ export class LuciaAuthAdapter implements Adapter {
             attributes: {},
         }))
     }
+
     async setSession(session: DatabaseSession): Promise<void> {
         await this.database
             .insert(schema.sessions)
@@ -70,6 +72,7 @@ export class LuciaAuthAdapter implements Adapter {
                 },
             })
     }
+
     async updateSessionExpiration(sessionId: string, expiresAt: Date): Promise<void> {
         await this.database
             .update(schema.sessions)
@@ -78,12 +81,15 @@ export class LuciaAuthAdapter implements Adapter {
             })
             .where(eq(schema.sessions.id, sessionId))
     }
+
     async deleteSession(sessionId: string): Promise<void> {
         await this.database.delete(schema.sessions).where(eq(schema.sessions.id, sessionId))
     }
+
     async deleteUserSessions(userId: UserId): Promise<void> {
         await this.database.delete(schema.sessions).where(eq(schema.sessions.userId, userId))
     }
+
     async deleteExpiredSessions(): Promise<void> {
         await this.database.delete(schema.sessions).where(eq(schema.sessions.expiresAt, new Date()))
     }

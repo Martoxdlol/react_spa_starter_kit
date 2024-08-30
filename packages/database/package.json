@@ -1,6 +1,5 @@
 {
     "name": "database",
-    "module": "index.ts",
     "type": "module",
     "exports": {
         ".": "./src/index.ts"

@@ -1,9 +1,12 @@
-import { auth } from 'auth-helpers'
+import { handler } from 'api/server'
+import { auth, lucia } from 'auth-helpers'
 import { Hono } from 'hono'
+import { getCookie } from 'hono/cookie'
 
 const app = new Hono()
-    .get('/api', (c) => {
-        return c.json({})
+    .use('/api/trpc/*', async (c) => {
+        const sessionId = getCookie(c, lucia.sessionCookieName) ?? null
+        return handler(c.req.raw, { sessionId })
     })
 
     .route('/api/auth', auth)
