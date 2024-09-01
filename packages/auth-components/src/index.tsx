@@ -1,6 +1,7 @@
 import { api } from 'api/react'
 import type { Session } from 'auth-helpers/models'
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect } from 'react'
+import { useLocalStorage } from 'shared-utils/hooks'
 
 export type AuthContext = {
     session: Session | null
@@ -21,9 +22,11 @@ const authContext = createContext<AuthContext>({
 })
 
 export function AuthProvider(props: AuthProviderProps) {
-    const [savedSession, setSavedSession] = useState<Session | null>(null)
+    const [savedSession, setSavedSession] = useLocalStorage<Session | null>('session', null)
 
-    const query = api.auth.currentUser.useQuery()
+    const query = api.auth.currentUser.useQuery(undefined, {
+        refetchInterval: 1000 * 60 * 5,
+    })
 
     const showLoading = !savedSession && query.isPending
 
@@ -35,7 +38,7 @@ export function AuthProvider(props: AuthProviderProps) {
         } else if (query.isFetched && !query.data) {
             setSavedSession(null)
         }
-    }, [query.data, query.isFetched])
+    }, [query.data, query.isFetched, setSavedSession])
 
     return (
         <authContext.Provider
