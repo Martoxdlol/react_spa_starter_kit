@@ -2,6 +2,7 @@ export type User = {
     id: string
     name: string
     picture: string | null
+    locale: string | null
 }
 
 export type Session = {

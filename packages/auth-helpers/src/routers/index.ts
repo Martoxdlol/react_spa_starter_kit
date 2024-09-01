@@ -17,6 +17,7 @@ export const auth = router({
             name: user.name,
             id: user.id,
             picture: user.picture,
+            locale: user.locale,
         }
     }),
 })
