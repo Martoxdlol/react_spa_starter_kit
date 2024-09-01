@@ -2,8 +2,7 @@ import { generateCodeVerifier, generateState } from 'arctic'
 import { db } from 'database'
 import { Hono } from 'hono'
 import { deleteCookie, getCookie, setCookie } from 'hono/cookie'
-import { github, google, lucia } from '../lucia'
-import type { GoogleUser } from '../types'
+import { github, google, lucia } from '../services/lucia'
 import {
     consumeAuthLocaleCookie,
     consumeRedirectPathCookie,
@@ -13,7 +12,8 @@ import {
     setTempCookie,
     upsertGithubUser,
     upsertGoogleUser,
-} from '../utils'
+} from '../services/utils'
+import type { GoogleUser } from '../types'
 
 export const auth = new Hono()
 

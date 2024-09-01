@@ -1,3 +1,13 @@
+export type User = {
+    id: string
+    name: string
+    picture: string | null
+}
+
+export type Session = {
+    user: User
+}
+
 export interface GitHubUser {
     id: number
     login: string

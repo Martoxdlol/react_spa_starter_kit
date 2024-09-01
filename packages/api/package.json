@@ -19,6 +19,7 @@
         "@trpc/react-query": "^11.0.0-rc.332",
         "api-helpers": "workspace:*",
         "database": "workspace:*",
+        "auth-helpers": "workspace:*",
         "env-helpers": "workspace:*"
     }
 }

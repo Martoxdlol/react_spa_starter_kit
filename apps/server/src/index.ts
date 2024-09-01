@@ -1,5 +1,6 @@
 import { handler } from 'api/server'
-import { auth, lucia } from 'auth-helpers'
+import { auth } from 'auth-helpers/hono-apps'
+import { lucia } from 'auth-helpers/services'
 import { Hono } from 'hono'
 import { getCookie } from 'hono/cookie'
 

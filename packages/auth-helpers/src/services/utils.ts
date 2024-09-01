@@ -2,7 +2,7 @@ import { OAuth2RequestError } from 'arctic'
 import { type DBTX, schema } from 'database'
 import type { Context } from 'hono'
 import { deleteCookie, getCookie, setCookie } from 'hono/cookie'
-import type { GitHubUser, GoogleUser } from './types'
+import type { GitHubUser, GoogleUser } from '../models'
 
 export function setTempCookie(c: Context, key: string, value: string, maxAge?: number) {
     setCookie(c, key, value, {

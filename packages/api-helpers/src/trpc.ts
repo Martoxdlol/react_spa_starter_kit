@@ -1,5 +1,5 @@
 import { TRPCError, initTRPC } from '@trpc/server'
-import { lucia } from 'auth-helpers'
+import { lucia } from 'auth-helpers/services'
 import SuperJSON from 'superjson'
 import type { Context } from './context'
 
@@ -8,6 +8,8 @@ export const t = initTRPC.context<Context>().create({
 })
 
 export const router = t.router
+
+export const publicProcedure = t.procedure
 
 export const protectedProcedure = t.procedure.use(async ({ ctx, next }) => {
     if (!ctx.sessionId) {
