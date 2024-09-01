@@ -1,4 +1,4 @@
-import { GitHub, Google } from 'arctic'
+import { GitHub, Google, MicrosoftEntraId } from 'arctic'
 import { db } from 'database'
 import { env } from 'env-helpers'
 import { Lucia, TimeSpan } from 'lucia'
@@ -18,6 +18,8 @@ export const lucia = new Lucia(adapter, {
     getUserAttributes: (attributes) => {
         return {
             githubId: attributes.githubId,
+            googleId: attributes.googleId,
+            microsoftId: attributes.microsoftId,
             name: attributes.name,
             locale: attributes.locale,
             onboardingCompleted: attributes.onboardingCompleted,
@@ -37,6 +39,8 @@ declare module 'lucia' {
 
 interface DatabaseUserAttributes {
     githubId: number | null
+    googleId: string | null
+    microsoftId: string | null
     name: string
     locale: string
     picture: string | null
@@ -53,4 +57,11 @@ export const google = new Google(
     env.GOOGLE_CLIENT_ID,
     env.GOOGLE_CLIENT_SECRET,
     new URL('/api/auth/login/google/callback', env.BASE_URL).href,
+)
+
+export const microsoft = new MicrosoftEntraId(
+    env.MICROSOFT_TENANT_ID,
+    env.MICROSOFT_CLIENT_ID,
+    env.MICROSOFT_CLIENT_SECRET,
+    new URL('/api/auth/login/microsoft/callback', env.BASE_URL).href,
 )

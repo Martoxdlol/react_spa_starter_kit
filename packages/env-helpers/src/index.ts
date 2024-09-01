@@ -13,6 +13,10 @@ export const env = createEnv({
 
         GOOGLE_CLIENT_ID: z.string(),
         GOOGLE_CLIENT_SECRET: z.string(),
+
+        MICROSOFT_TENANT_ID: z.string(),
+        MICROSOFT_CLIENT_ID: z.string(),
+        MICROSOFT_CLIENT_SECRET: z.string(),
     },
     runtimeEnv: {
         BASE_URL: process.env.BASE_URL ?? 'http://localhost:5173',

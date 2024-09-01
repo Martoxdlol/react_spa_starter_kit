@@ -1,6 +1,6 @@
-import { useAuthContext, useSession } from 'auth-components'
+import { useAuthContext } from 'auth-components'
+import { LoginScreen } from '../screens/login'
 import { AuthLoadingScreen } from './auth-loading-screen'
-import { AuthScreen } from './auth-screen'
 
 export type AuthBarrierProps = {
     children: React.ReactNode
@@ -14,7 +14,7 @@ export function AuthBarrier(props: AuthBarrierProps) {
     }
 
     if (!context.session) {
-        return <AuthScreen />
+        return <LoginScreen />
     }
 
     return <>{props.children}</>

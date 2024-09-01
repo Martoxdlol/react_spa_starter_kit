@@ -2,7 +2,7 @@ import { OAuth2RequestError } from 'arctic'
 import { type DBTX, schema } from 'database'
 import type { Context } from 'hono'
 import { deleteCookie, getCookie, setCookie } from 'hono/cookie'
-import type { GitHubUser, GoogleUser } from '../models'
+import type { GitHubUser, GoogleUser, MicrosoftUser } from '../models'
 
 export function setTempCookie(c: Context, key: string, value: string, maxAge?: number) {
     setCookie(c, key, value, {
@@ -99,6 +99,32 @@ export async function upsertGoogleUser(db: DBTX, googleUser: GoogleUser, locale:
             target: [schema.users.googleId],
             set: {
                 picture: googleUser.picture,
+            },
+        })
+        .returning()
+
+    if (!user) {
+        throw new Error('Failed to create/update obtain user')
+    }
+
+    return user
+}
+
+export async function upsertMicrosoftUser(db: DBTX, microsoftUser: MicrosoftUser, locale: string) {
+    const [user] = await db
+        .insert(schema.users)
+        .values({
+            locale,
+            name: microsoftUser.name,
+            googleId: microsoftUser.sub,
+            picture: microsoftUser.picture,
+            email: microsoftUser.email,
+            emailVerifiedAt: new Date(),
+        })
+        .onConflictDoUpdate({
+            target: [schema.users.googleId],
+            set: {
+                picture: microsoftUser.picture,
             },
         })
         .returning()

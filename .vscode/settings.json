@@ -3,7 +3,8 @@
         "source.organizeImports.biome": "explicit",
         "quickfix.biome": "explicit",
         "source.fixAll.ts": "explicit",
-        "source.sortImports": "explicit"
+        "source.sortImports": "explicit",
+        "source.removeUnusedImports": "always"
     },
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "biomejs.biome",

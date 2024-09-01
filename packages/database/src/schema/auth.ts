@@ -16,6 +16,9 @@ export const users = createTable('user', {
     googleId: varchar('google_id', { length: 256 }).unique(undefined, {
         nulls: 'distinct',
     }),
+    microsoftId: varchar('microsoft_id', { length: 256 }).unique(undefined, {
+        nulls: 'distinct',
+    }),
     onboardingCompletedAt: date('onboarding_completed_at'),
     locale: varchar('locale', { length: 5 }).default('en').notNull(),
     createdAt,

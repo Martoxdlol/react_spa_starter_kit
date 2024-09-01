@@ -24,3 +24,12 @@ export interface GoogleUser {
     email: string
     email_verified: boolean
 }
+
+export interface MicrosoftUser {
+    sub: string
+    name: string
+    family_name: string
+    given_name: string
+    picture?: string | null
+    email: string
+}
