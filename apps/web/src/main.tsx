@@ -24,7 +24,3 @@ createRoot(document.getElementById('root')!).render(
         </ApiProvider>
     </StrictMode>,
 )
-
-function Hello() {
-    return <div className='bg-red-500 border-4 border-dashed h-full w-full p-4'>hello</div>
-}
