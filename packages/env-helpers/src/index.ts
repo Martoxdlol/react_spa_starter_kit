@@ -17,6 +17,8 @@ export const env = createEnv({
         MICROSOFT_TENANT_ID: z.string(),
         MICROSOFT_CLIENT_ID: z.string(),
         MICROSOFT_CLIENT_SECRET: z.string(),
+
+        DATABASE_TABLES_PREFIX: z.string().default('app'),
     },
     runtimeEnv: {
         BASE_URL: process.env.BASE_URL ?? 'http://localhost:5173',

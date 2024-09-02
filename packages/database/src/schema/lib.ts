@@ -2,7 +2,7 @@
 // https://orm.drizzle.team/docs/sql-schema-declaration
 import { sql } from 'drizzle-orm'
 import { integer, pgTableCreator, text, timestamp } from 'drizzle-orm/pg-core'
-import { customAlphabet } from 'nanoid'
+import { env } from 'env-helpers'
 import { createId } from '../utils'
 
 /**
@@ -11,7 +11,7 @@ import { createId } from '../utils'
  *
  * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
  */
-export const createTable = pgTableCreator((name) => `lt_${name}`)
+export const createTable = pgTableCreator((name) => `${env.DATABASE_TABLES_PREFIX}_${name}`)
 
 export const updatedAt = timestamp('updated_at', {
     withTimezone: true,
