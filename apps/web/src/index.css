@@ -76,16 +76,6 @@
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-  }
-}
-
 @media (pointer: fine) {
 
   /* Global scrollbar */
@@ -111,8 +101,4 @@
   :root {
     --scrollbar-size: 0px;
   }
-}
-
-body {
-  background-color: hsl(var(--background));
 }
